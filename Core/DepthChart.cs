@@ -8,7 +8,22 @@ public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> w
 
     public void AddPlayer(P position, Player player, int? depth)
     {
-        throw new NotImplementedException();
+        if (!_positionLookup.TryGetValue(position, out var playerList))
+        {
+            playerList = [];
+            _positionLookup[position] = playerList;
+        }
+
+        if (depth.HasValue)
+        {
+            var insertIndex = Math.Min(playerList.Count, depth.Value);
+            playerList.Insert(insertIndex, player);
+
+        }
+        else
+        {
+            playerList.Add(player);
+        }
     }
 
     public Player RemovePlayer(P position, Player player)
