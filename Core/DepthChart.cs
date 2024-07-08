@@ -6,7 +6,7 @@ public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> w
 {
     private readonly Dictionary<P, List<Player>> _positionLookup = [];
 
-    public void AddPlayer(P position, Player player, int? depth)
+    public void AddPlayer(P position, Player player, int? depth = null)
     {
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
@@ -14,11 +14,29 @@ public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> w
             _positionLookup[position] = playerList;
         }
 
+        if (playerList.Any(p => player.Number == p.Number))
+        {
+            throw new ArgumentException(
+                $"Player at position {position} with number {player.Number} already exists in the depth chart",
+                nameof(player));
+        }
+
         if (depth.HasValue)
         {
-            var insertIndex = Math.Min(playerList.Count, depth.Value);
-            playerList.Insert(insertIndex, player);
+            if(depth < 0)
+            {
+                throw new ArgumentException(
+                    "Position depth cannot be negative",
+                    nameof(depth));
+            }
+            else if (depth > playerList.Count)
+            {
+                throw new ArgumentException(
+                    $"Player at position {position} cannot be inserted at depth {depth} which is greater than current depth {playerList.Count}",
+                    nameof(depth));
+            }
 
+            playerList.Insert(depth.Value, player);
         }
         else
         {
