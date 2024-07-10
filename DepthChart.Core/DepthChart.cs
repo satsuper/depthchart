@@ -50,20 +50,22 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public TPlayer? RemovePlayer(TPosition position, TPlayer player)
     {
-        TPlayer? removed = null;
-        if (_positionLookup.TryGetValue(position, out var playerList))
+        if (!_positionLookup.TryGetValue(position, out var playerList))
         {
-            var index = playerList.FindIndex(p => p.Number == player.Number);
-            if (index != -1)
-            {
-                removed = playerList[index];
-                playerList.RemoveAt(index);
-            }
+            return null;
+        }
 
-            if (playerList.Count == 0)
-            {
-                _positionLookup.Remove(position);
-            }
+        TPlayer? removed = null;
+        var index = playerList.FindIndex(p => p.Number == player.Number);
+        if (index != -1)
+        {
+            removed = playerList[index];
+            playerList.RemoveAt(index);
+        }
+
+        if (playerList.Count == 0)
+        {
+            _positionLookup.Remove(position);
         }
 
         return removed;
@@ -71,23 +73,25 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public IEnumerable<TPlayer> GetBackups(TPosition position, TPlayer player)
     {
-        IEnumerable<TPlayer> backups = [];
-        if (_positionLookup.TryGetValue(position, out var playerList))
+        if (!_positionLookup.TryGetValue(position, out var playerList))
         {
-            if (playerList.Count <= 1)
-            {
-                return backups;
-            }
-
-            var index = playerList.FindIndex(p => p.Number == player.Number);
-            if (index != -1)
-            {
-                var startIndex = index + 1;
-                backups = playerList.GetRange(startIndex, playerList.Count - startIndex);
-            }
+            return [];
         }
 
-        return backups;
+        if (playerList.Count <= 1)
+        {
+            return [];
+        }
+
+        IEnumerable<TPlayer>? backups = null;
+        var index = playerList.FindIndex(p => p.Number == player.Number);
+        if (index != -1)
+        {
+            var startIndex = index + 1;
+            backups = playerList.GetRange(startIndex, playerList.Count - startIndex);
+        }
+
+        return backups ?? [];
     }
 
     public IEnumerator<KeyValuePair<TPosition, IEnumerable<TPlayer>>> GetEnumerator()
