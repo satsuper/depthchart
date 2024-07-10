@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace DepthChart.Core;
+namespace DepthCharts.Core;
 
 public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition, IEnumerable<TPlayer>>>
     where TPosition : notnull

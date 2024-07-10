@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthChart.Core", "DepthChart.Core\DepthChart.Core.csproj", "{416D056D-7371-4BE5-942E-795086F3A0E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthCharts.Core", "DepthCharts.Core\DepthCharts.Core.csproj", "{416D056D-7371-4BE5-942E-795086F3A0E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthChart.Test", "DepthChart.Test\DepthChart.Test.csproj", "{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthCharts.Test", "DepthCharts.Test\DepthCharts.Test.csproj", "{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthChart.Examples", "DepthChart.Examples\DepthChart.Examples.csproj", "{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthCharts.Examples", "DepthCharts.Examples\DepthCharts.Examples.csproj", "{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

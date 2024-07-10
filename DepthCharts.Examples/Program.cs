@@ -1,5 +1,5 @@
-using DepthChart.Examples.NBA;
-using DepthChart.Examples.NFL;
+using DepthCharts.Examples.NBA;
+using DepthCharts.Examples.NFL;
 
 var nflCharts = new NflDepthCharts();
 nflCharts.DisplayAllCharts();

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DepthChart.Core\DepthChart.Core.csproj" />
+    <ProjectReference Include="..\DepthCharts.Core\DepthCharts.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

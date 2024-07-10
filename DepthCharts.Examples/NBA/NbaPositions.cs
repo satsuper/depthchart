@@ -1,4 +1,4 @@
-namespace DepthChart.Examples.NBA
+namespace DepthCharts.Examples.NBA
 {
     public enum NbaPositions
     {

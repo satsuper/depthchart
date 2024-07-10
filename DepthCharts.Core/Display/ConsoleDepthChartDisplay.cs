@@ -1,4 +1,4 @@
-namespace DepthChart.Core.Display
+namespace DepthCharts.Core.Display
 {
     public class ConsoleDepthChartDisplay<TPosition, TPlayer>
         where TPosition : notnull

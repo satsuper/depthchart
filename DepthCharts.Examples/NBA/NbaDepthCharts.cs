@@ -1,7 +1,7 @@
-using DepthChart.Core;
-using DepthChart.Core.Display;
+using DepthCharts.Core;
+using DepthCharts.Core.Display;
 
-namespace DepthChart.Examples.NBA
+namespace DepthCharts.Examples.NBA
 {
     public class NbaDepthCharts
     {

@@ -1,6 +1,6 @@
-using DepthChart.Core;
+using DepthCharts.Core;
 
-namespace DepthChart.Test;
+namespace DepthCharts.Test;
 
 public class DepthChartTests
 {
