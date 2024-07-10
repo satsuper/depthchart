@@ -31,8 +31,8 @@ public class DepthChartTests
 
         var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"LT", new[] { player } },
-            {"RT", new[] { player } }
+            {"LT", [ player ] },
+            {"RT", [ player ] }
         };
         Assert.Equal(expectedPlayers, chart.ToDictionary());
     }
@@ -51,7 +51,7 @@ public class DepthChartTests
 
         var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"QB", new[] { players[0], newPlayer, players[1] } }
+            {"QB", [ players[0], newPlayer, players[1] ] }
         };
         Assert.Equal(expectedPlayers, chart.ToDictionary());
     }
@@ -70,7 +70,7 @@ public class DepthChartTests
 
         var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"QB", new[] { players[0], players[1], newPlayer } }
+            {"QB", [ players[0], players[1], newPlayer ] }
         };
         Assert.Equal(expectedPlayers, chart.ToDictionary());
     }
@@ -86,7 +86,7 @@ public class DepthChartTests
 
         var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"QB", new[] { player } }
+            {"QB", [ player ] }
         };
         Assert.Equal(expectedPlayers, chart.ToDictionary());
     }
@@ -118,7 +118,7 @@ public class DepthChartTests
 
         var remainingPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"QB", new [] { players[0], players[2] } }
+            {"QB", [ players[0], players[2] ] }
         };
         Assert.Equal(remainingPlayers, chart.ToDictionary());
     }
@@ -156,7 +156,7 @@ public class DepthChartTests
 
         var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
-            {"LT", new[] { player } }
+            {"LT", [ player ] }
         };
         Assert.Equal(expectedPlayers, chart.ToDictionary());
     }
@@ -165,7 +165,7 @@ public class DepthChartTests
     public void GetBackupsFromChart()
     {
         var chart = new DepthChart<string, Player>();
-        var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
+        var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert"), new(2, "Kyle Trask") };
         for (var i = 0; i < players.Length; i++)
         {
             chart.AddPlayer("QB", players[i], i);
