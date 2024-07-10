@@ -22,6 +22,22 @@ public class DepthChartTests
     }
 
     [Fact]
+    public void AddSamePlayerToChartAtMultiplePositions()
+    {
+        var chart = new DepthChart<string>();
+        var player = new Player(72, "Josh Wells");
+        chart.AddPlayer("LT", player);
+        chart.AddPlayer("RT", player);
+
+        var expectedPlayers = new Dictionary<string, IEnumerable<Player>>()
+        {
+            {"LT", new[] { player } },
+            {"RT", new[] { player } }
+        };
+        Assert.Equal(expectedPlayers, chart.ToDictionary());
+    }
+
+    [Fact]
     public void AddPlayerToChartShiftsExistingPlayers()
     {
         var chart = new DepthChart<string>();
@@ -94,6 +110,26 @@ public class DepthChartTests
         var remainingPlayers = new Dictionary<string, IEnumerable<Player>>()
         {
             {"QB", new [] { players[1] } }
+        };
+        Assert.Equal(remainingPlayers, chart.ToDictionary());
+    }
+
+    [Fact]
+    public void RemovePlayerThatDoesNotExistFromChart()
+    {
+        var chart = new DepthChart<string>();
+        var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
+        for (var i = 0; i < players.Length; i++)
+        {
+            chart.AddPlayer("QB", players[i], i);
+        }
+
+        var removed = chart.RemovePlayer("QB", new Player(2, "Kyle Trask"));
+        Assert.Null(removed);
+
+        var remainingPlayers = new Dictionary<string, IEnumerable<Player>>()
+        {
+            {"QB", players}
         };
         Assert.Equal(remainingPlayers, chart.ToDictionary());
     }
