@@ -1,4 +1,4 @@
-﻿namespace DepthChart.Core
+namespace DepthChart.Core
 {
     public interface IPlayer
     {
