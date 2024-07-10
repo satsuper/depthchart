@@ -4,7 +4,7 @@ namespace DepthChart.Core;
 
 public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition, IEnumerable<TPlayer>>>
     where TPosition : notnull
-    where TPlayer : IPlayer
+    where TPlayer : class, IPlayer
 {
     private readonly Dictionary<TPosition, List<TPlayer>> _positionLookup = [];
 
@@ -13,7 +13,6 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
             playerList = [];
-            _positionLookup[position] = playerList;
         }
 
         if (playerList.Any(p => player.Number == p.Number))
@@ -44,11 +43,30 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
         {
             playerList.Add(player);
         }
+
+        // Add player list to position lookup at the end in case this is a new position and an error was encountered adding the player
+        _positionLookup[position] = playerList;
     }
 
-    public TPlayer RemovePlayer(TPosition position, TPlayer player)
+    public TPlayer? RemovePlayer(TPosition position, TPlayer player)
     {
-        throw new NotImplementedException();
+        TPlayer? removed = null;
+        if (_positionLookup.TryGetValue(position, out var playerList))
+        {
+            var index = playerList.FindIndex(p => p.Number == player.Number);
+            if (index != -1)
+            {
+                removed = playerList[index];
+                playerList.RemoveAt(index);
+            }
+
+            if (playerList.Count == 0)
+            {
+                _positionLookup.Remove(position);
+            }
+        }
+
+        return removed;
     }
 
     public IEnumerable<TPlayer> GetBackups(TPosition position, TPlayer player)
