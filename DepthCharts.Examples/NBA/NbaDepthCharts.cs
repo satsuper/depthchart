@@ -34,7 +34,6 @@ namespace DepthCharts.Examples.NBA
                 {NbaPositions.C, new Player[] {new(3, "A. Davis"), new(2, "J. Vanderbilt"), new(11, "J. Hayes"), new(35, "C. Wood"), new(28, "R. Hachimura"), new(23, "L. James"), new(14, "C. Castleton")} }
             };
 
-
             _teamCharts["LA Lakers"] = CreateChart(players);
         }
 

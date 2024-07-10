@@ -11,7 +11,7 @@ namespace DepthCharts.Core.Display
             foreach (var positionPlayerPair in chart)
             {
                 var position = positionPlayerPair.Key;
-                var players = string.Join(",", positionPlayerPair.Value);
+                var players = string.Join(", ", positionPlayerPair.Value);
                 Console.WriteLine($"{position} - {players}");
             }
         }
