@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace DepthChart.Core
 {
     public record Player(int Number, string Name)
     {
