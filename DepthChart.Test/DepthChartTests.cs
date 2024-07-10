@@ -22,6 +22,18 @@ public class DepthChartTests
     }
 
     [Fact]
+    public void AddPlayerToChartInvalidArgs()
+    {
+        var chart = new DepthChart<string, Player>();
+        var player = new Player(12, "Tom Brady");
+        Assert.Throws<ArgumentNullException>(() => chart.AddPlayer(null!, player));
+        Assert.Throws<ArgumentNullException>(() => chart.AddPlayer("QB", null!));
+
+        var expectedPlayers = new Dictionary<string, IEnumerable<Player>>();
+        Assert.Equal(expectedPlayers, chart.ToDictionary());
+    }
+
+    [Fact]
     public void AddSamePlayerToChartAtMultiplePositions()
     {
         var chart = new DepthChart<string, Player>();
@@ -124,6 +136,23 @@ public class DepthChartTests
     }
 
     [Fact]
+    public void RemovePlayerFromChartInvalidArgs()
+    {
+        var chart = new DepthChart<string, Player>();
+        var player = new Player(12, "Tom Brady");
+        chart.AddPlayer("QB", player);
+
+        Assert.Throws<ArgumentNullException>(() => chart.RemovePlayer(null!, player));
+        Assert.Throws<ArgumentNullException>(() => chart.RemovePlayer("QB", null!));
+
+        var remainingPlayers = new Dictionary<string, IEnumerable<Player>>()
+        {
+            {"QB", [ player ] }
+        };
+        Assert.Equal(remainingPlayers, chart.ToDictionary());
+    }
+
+    [Fact]
     public void RemovePlayerThatDoesNotExistFromChart()
     {
         var chart = new DepthChart<string, Player>();
@@ -176,6 +205,20 @@ public class DepthChartTests
 
         backups = chart.GetBackups("QB", players[1]);
         Assert.Equal([players[2]], backups);
+    }
+
+    [Fact]
+    public void GetBackupsFromChartInvalidArgs()
+    {
+        var chart = new DepthChart<string, Player>();
+        var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert"), new(2, "Kyle Trask") };
+        for (var i = 0; i < players.Length; i++)
+        {
+            chart.AddPlayer("QB", players[i], i);
+        }
+
+        Assert.Throws<ArgumentNullException>(() => chart.GetBackups(null!, players[0]));
+        Assert.Throws<ArgumentNullException>(() => chart.GetBackups("QB", null!));
     }
 
     [Fact]

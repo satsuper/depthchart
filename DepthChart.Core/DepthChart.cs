@@ -10,6 +10,9 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public void AddPlayer(TPosition position, TPlayer player, int? depth = null)
     {
+        ArgumentNullException.ThrowIfNull(position);
+        ArgumentNullException.ThrowIfNull(player);
+
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
             playerList = [];
@@ -50,6 +53,9 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public TPlayer? RemovePlayer(TPosition position, TPlayer player)
     {
+        ArgumentNullException.ThrowIfNull(position);
+        ArgumentNullException.ThrowIfNull(player);
+
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
             return null;
@@ -73,6 +79,9 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public IEnumerable<TPlayer> GetBackups(TPosition position, TPlayer player)
     {
+        ArgumentNullException.ThrowIfNull(position);
+        ArgumentNullException.ThrowIfNull(player);
+
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
             return [];
