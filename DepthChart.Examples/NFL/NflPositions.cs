@@ -1,0 +1,33 @@
+namespace DepthChart.Examples.NFL
+{
+    public enum NflPositions
+    {
+        LWR,
+        RWR,
+        SWR,
+        LT,
+        LG,
+        C,
+        RG,
+        RT,
+        TE,
+        QB,
+        RB,
+        LDE,
+        NT,
+        RDE,
+        LOLB,
+        LILB,
+        RILB,
+        ROLB,
+        LCB,
+        SS,
+        FS,
+        RCB,
+        NB,
+        FB,
+        DT,
+        WLB,
+        MLB
+    }
+}

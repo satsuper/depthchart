@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthChart.Core", "DepthCha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DepthChart.Test", "DepthChart.Test\DepthChart.Test.csproj", "{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthChart.Examples", "DepthChart.Examples\DepthChart.Examples.csproj", "{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1B0CF85-22AE-4B49-B9E4-ABD0D48ABE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE61CD4F-77DD-4919-8E9A-B0D30C0B8A48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
