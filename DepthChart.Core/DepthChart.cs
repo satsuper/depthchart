@@ -71,7 +71,23 @@ public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition
 
     public IEnumerable<TPlayer> GetBackups(TPosition position, TPlayer player)
     {
-        throw new NotImplementedException();
+        IEnumerable<TPlayer> backups = [];
+        if (_positionLookup.TryGetValue(position, out var playerList))
+        {
+            if (playerList.Count <= 1)
+            {
+                return backups;
+            }
+
+            var index = playerList.FindIndex(p => p.Number == player.Number);
+            if (index != -1)
+            {
+                var startIndex = index + 1;
+                backups = playerList.GetRange(startIndex, playerList.Count - startIndex);
+            }
+        }
+
+        return backups;
     }
 
     public IEnumerator<KeyValuePair<TPosition, IEnumerable<TPlayer>>> GetEnumerator()

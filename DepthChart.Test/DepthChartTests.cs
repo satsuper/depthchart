@@ -172,7 +172,31 @@ public class DepthChartTests
         }
 
         var backups = chart.GetBackups("QB", players[0]);
+        Assert.Equal([players[1], players[2]], backups);
 
-        Assert.Equal([players[1]], backups);
+        backups = chart.GetBackups("QB", players[1]);
+        Assert.Equal([players[2]], backups);
+    }
+
+    [Fact]
+    public void GetBackupsFromChartWithNoBackup()
+    {
+        var chart = new DepthChart<string, Player>();
+        var player = new Player(12, "Tom Brady");
+        chart.AddPlayer("QB", player);
+
+        var backups = chart.GetBackups("QB", player);
+        Assert.Equal([], backups);
+    }
+
+    [Fact]
+    public void GetBackupsFromChartWithIncorrectPosition()
+    {
+        var chart = new DepthChart<string, Player>();
+        var player = new Player(12, "Tom Brady");
+        chart.AddPlayer("QB", player);
+
+        var backups = chart.GetBackups("LT", player);
+        Assert.Equal([], backups);
     }
 }
