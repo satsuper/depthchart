@@ -2,11 +2,13 @@
 
 namespace DepthChart.Core;
 
-public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> where P : notnull
+public class DepthChart<TPosition, TPlayer> : IEnumerable<KeyValuePair<TPosition, IEnumerable<TPlayer>>>
+    where TPosition : notnull
+    where TPlayer : IPlayer
 {
-    private readonly Dictionary<P, List<Player>> _positionLookup = [];
+    private readonly Dictionary<TPosition, List<TPlayer>> _positionLookup = [];
 
-    public void AddPlayer(P position, Player player, int? depth = null)
+    public void AddPlayer(TPosition position, TPlayer player, int? depth = null)
     {
         if (!_positionLookup.TryGetValue(position, out var playerList))
         {
@@ -23,7 +25,7 @@ public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> w
 
         if (depth.HasValue)
         {
-            if(depth < 0)
+            if (depth < 0)
             {
                 throw new ArgumentException(
                     "Position depth cannot be negative",
@@ -44,21 +46,21 @@ public class DepthChart<P> : IEnumerable<KeyValuePair<P, IEnumerable<Player>>> w
         }
     }
 
-    public Player RemovePlayer(P position, Player player)
+    public TPlayer RemovePlayer(TPosition position, TPlayer player)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<Player> GetBackups(P position, Player player)
+    public IEnumerable<TPlayer> GetBackups(TPosition position, TPlayer player)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerator<KeyValuePair<P, IEnumerable<Player>>> GetEnumerator()
+    public IEnumerator<KeyValuePair<TPosition, IEnumerable<TPlayer>>> GetEnumerator()
     {
         foreach (var positionList in _positionLookup)
         {
-            yield return new KeyValuePair<P, IEnumerable<Player>>(positionList.Key, positionList.Value);
+            yield return new KeyValuePair<TPosition, IEnumerable<TPlayer>>(positionList.Key, positionList.Value);
         }
     }
 

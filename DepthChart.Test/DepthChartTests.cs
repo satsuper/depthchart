@@ -7,7 +7,7 @@ public class DepthChartTests
     [Fact]
     public void AddPlayerToChart()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
         for (var i = 0; i < players.Length; i++)
         {
@@ -24,7 +24,7 @@ public class DepthChartTests
     [Fact]
     public void AddSamePlayerToChartAtMultiplePositions()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var player = new Player(72, "Josh Wells");
         chart.AddPlayer("LT", player);
         chart.AddPlayer("RT", player);
@@ -40,7 +40,7 @@ public class DepthChartTests
     [Fact]
     public void AddPlayerToChartShiftsExistingPlayers()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(2, "Kyle Trask") };
         for (var i = 0; i < players.Length; i++)
         {
@@ -59,7 +59,7 @@ public class DepthChartTests
     [Fact]
     public void AddPlayerWithoutDepthAddsAtEnd()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(2, "Kyle Trask") };
         for (var i = 0; i < players.Length; i++)
         {
@@ -79,7 +79,7 @@ public class DepthChartTests
     [Fact]
     public void AddSamePlayerToChartTwice()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         chart.AddPlayer("QB", new Player(12, "Tom Brady"), 0);
 
         Assert.Throws<ArgumentException>(() => chart.AddPlayer("QB", new Player(12, "Tom Brady"), 1));
@@ -88,7 +88,7 @@ public class DepthChartTests
     [Fact]
     public void AddPlayerToChartAtInvalidDepth()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
 
         Assert.Throws<ArgumentException>(() => chart.AddPlayer("QB", new Player(12, "Tom Brady"), 1));
         Assert.Throws<ArgumentException>(() => chart.AddPlayer("QB", new Player(12, "Tom Brady"), -1));
@@ -97,7 +97,7 @@ public class DepthChartTests
     [Fact]
     public void RemovePlayerFromChart()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
         for (var i = 0; i < players.Length; i++)
         {
@@ -117,7 +117,7 @@ public class DepthChartTests
     [Fact]
     public void RemovePlayerThatDoesNotExistFromChart()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
         for (var i = 0; i < players.Length; i++)
         {
@@ -137,7 +137,7 @@ public class DepthChartTests
     [Fact]
     public void GetBackupsFromChart()
     {
-        var chart = new DepthChart<string>();
+        var chart = new DepthChart<string, Player>();
         var players = new Player[] { new(12, "Tom Brady"), new(11, "Blaine Gabbert") };
         for (var i = 0; i < players.Length; i++)
         {
